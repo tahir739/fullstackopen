@@ -4,20 +4,13 @@ import ReactDOM from 'react-dom'
 const History = (props) => {
     if (props.good + props.neutral + props.bad === 0) {
         return (
-            <table>
-                <tbody>
-                    <h2>No feed back given</h2>
-                </tbody>
-            </table>
+            <div>
+                <h2>No feed back given</h2>
+            </div>
         )
     }
     return (
-        <table>
-            <tbody>
-                <Statistics good={props.good} neutral={props.neutral} bad={props.bad} />
-            </tbody>
-        </table>
-            
+        <Statistics good={props.good} neutral={props.neutral} bad={props.bad} />
     )
 }
 
@@ -25,7 +18,7 @@ const History = (props) => {
 const Header = (props) => {
     return (
         <h1>
-               {props.name}
+            {props.name}
         </h1>
     );
 }
@@ -39,9 +32,8 @@ const Statistics = (props) => {
     const good = props.good
     const neutral = props.neutral
     const bad = props.bad
-    return (
-        <table>
-            <tbody>
+        return (
+            <div>
                 <h1>Statistics</h1>
                 <Statistic text="good" value={good} />
                 <Statistic text="neutral" value={neutral} />
@@ -49,10 +41,9 @@ const Statistics = (props) => {
                 <Statistic text="all" value={good + neutral + bad} />
                 <Statistic text="average" value={(good - bad) / (good + neutral + bad)} />
                 <Statistic text="positive" value={good / (good + neutral + bad) * 100} />
-            </tbody>
-        </table>
-    );
-
+            </div>
+        );
+    
 }
 
 
@@ -61,14 +52,10 @@ const Statistic = (props) => {
     const value = props.value
     if (text !== "positive")
         return (
-            <tr>
-                <td>{text} {value}</td>
-            </tr>
+            <p>{text} {value}</p>
         );
     else return (
-        <tr>
-            <td>{text} {value}%</td>
-        </tr>
+        <p>{text} {value}%</p>
     );
 }
 
@@ -107,4 +94,3 @@ ReactDOM.render(
     <App />,
     document.getElementById('root')
 )
-
